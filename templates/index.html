@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Weather App</title>
+</head>
+<body>
+    <div class="container">
+        <h1>CityCast</h1>
+        <div class="search-box">
+            <input type="text" id="city-input" placeholder="Enter city">
+            <input type="text" id="countryCode" placeholder="Country Code e.g ZA">
+            <button id="search-button">Search</button>
+        </div>
+        
+        <div class="weather-box" style="display: none;">
+            <img id="weather-icon" src="" alt="">
+            <p class="temperature"></p>
+            <p class="cityName"></p>
+            <p class="description"></p>
+            <p>Humidity: <span class="humidity"></span>%</p>
+            <p>Wind Speed: <span class="wind-speed"></span> Km/h</p>
+        </div>
+
+        <div class="not-found" style="display: none;">
+            <p>Oops! Unknown location :/</p>
+        </div>
+
+        <!-- 5-Day Forecast Section -->
+        <div class="forecast" style="display: none;">
+            <h2>5-Day Forecast</h2>
+            <div class="forecast-boxes">
+                <!-- Forecast boxes will be populated here -->
+            </div>
+        </div>
+        
+        <!-- Animation GIF -->
+        <img id="loading-gif" src="{{ url_for('static', filename='loading.gif') }}" alt="Loading..." style="display: none;">
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

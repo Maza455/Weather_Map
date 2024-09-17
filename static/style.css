@@ -1,0 +1,81 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #e0f7fa; /* Light blue background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  text-align: center;
+}
+
+.search-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-box input {
+  width: calc(50% - 10px);
+  padding: 10px;
+}
+
+.search-box button {
+  padding: 10px;
+}
+
+/* Weather Box Styles */
+.weather-box {
+  margin-top: 20px;
+}
+
+.not-found {
+  color: red;
+}
+
+/* Forecast Styles */
+.forecast {
+  margin-top: 20px;
+}
+
+.forecast h2 {
+  text-align: center;
+}
+
+.forecast-boxes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px; /* Space between forecast boxes */
+}
+
+.forecast-box {
+  background-color: rgba(255,255,255,0.8);
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* Animation */
+.fadeIn {
+  animation: fadeIn ease-in-out 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-10px);
+  }
+  
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
