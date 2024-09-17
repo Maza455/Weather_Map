@@ -1,45 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <title>Weather App</title>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+   <title>Weather App</title>
 </head>
 <body>
-    <div class="container">
-        <h1>CityCast</h1>
-        <div class="search-box">
-            <input type="text" id="city-input" placeholder="Enter city">
-            <input type="text" id="countryCode" placeholder="Country Code e.g ZA">
-            <button id="search-button">Search</button>
-        </div>
-        
-        <div class="weather-box" style="display: none;">
-            <img id="weather-icon" src="" alt="">
-            <p class="temperature"></p>
-            <p class="cityName"></p>
-            <p class="description"></p>
-            <p>Humidity: <span class="humidity"></span>%</p>
-            <p>Wind Speed: <span class="wind-speed"></span> Km/h</p>
-        </div>
+   <div class="container">
+       <h1>CityCast</h1>
+       <div class="search-box">
+           <input type="text" id="city-input" placeholder="Enter city" required>
+           <select id="countryCode">
+               <option value="" disabled selected>Select Country</option>
+               <option value="US">United States</option>
+               <option value="CA">Canada</option>
+               <option value="GB">United Kingdom</option>
+               <option value="ZA">South Africa</option>
+               <option value="AU">Australia</option>
+               <option value="IN">India</option>
+               <option value="BR">Brazil</option>
+               <option value="DE">Germany</option>
+               <option value="FR">France</option>
+               <option value="JP">Japan</option>
+               <option value="">Others</option>
+           </select>
+           <button id="search-button">Search</button>
+       </div>
 
-        <div class="not-found" style="display: none;">
-            <p>Oops! Unknown location :/</p>
-        </div>
+       <img id="loading-gif" src="{{ url_for('static', filename='loading.gif') }}" alt="Loading..." style="display:none;">
 
-        <!-- 5-Day Forecast Section -->
-        <div class="forecast" style="display: none;">
-            <h2>5-Day Forecast</h2>
-            <div class="forecast-boxes">
+       <div class="weather-box" style="display:none;">
+           <img id="weather-icon" src="" alt="">
+           <p class="temperature"></p>
+           <p class="cityName"></p>
+           <p class="description"></p>
+           <p>Humidity: <span class="humidity"></span>%</p>
+           <p>Wind Speed: <span class="wind-speed"></span> Km/h</p>
+           <p class="time-message" style="color: #ff5733; font-weight: bold;"></p> <!-- Message about upcoming weather -->
+           <p>Time: <span id="current-time" style="color: red; font-weight: bold;"></span></p>
+       </div>
+
+       <div class="not-found" style="display:none;">
+           <!-- <p>Oops! Unknown location :/</p> -->
+       </div>
+
+       <!-- Carousel for 5-Day Forecast -->
+       <div class="forecast" style="display:none;">
+        <h2>5-Day Forecast</h2>
+        <div class="forecast-container">
+            <!-- Carousel wrapper -->
+            <div class="carousel">
                 <!-- Forecast boxes will be populated here -->
+                <div class="forecast-boxes"></div>
             </div>
         </div>
-        
-        <!-- Animation GIF -->
-        <img id="loading-gif" src="{{ url_for('static', filename='loading.gif') }}" alt="Loading..." style="display: none;">
     </div>
+</div>
 
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+   <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

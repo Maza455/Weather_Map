@@ -3,7 +3,7 @@ import requests
 
 app = Flask(__name__)
 
-API_KEY = '16793aa4d20dfc1d893472dfe41db7b6'  # Replace with your OpenWeatherMap API key
+API_KEY = '203a0343366de9674ec987cdd0bc079b'  # Your OpenWeatherMap API key
 
 @app.route('/')
 def index():
@@ -14,8 +14,8 @@ def get_weather():
     city = request.form.get('city')
     country_code = request.form.get('countryCode')
     
-    if not city or not country_code:
-        return jsonify({'error': 'Please enter both city and country code.'}), 400
+    if not city:
+        return jsonify({'error': 'Please enter a city name.'}), 400
     
     # Fetch current weather data
     weather_url = f'https://api.openweathermap.org/data/2.5/weather?q={city},{country_code}&units=metric&appid={API_KEY}'
@@ -38,21 +38,22 @@ def get_weather():
         'lon': data['coord']['lon']
     }
     
-    # Fetch 5-day forecast data
-    forecast_url = f'https://api.openweathermap.org/data/2.5/forecast/daily?lat={weather_data["lat"]}&lon={weather_data["lon"]}&cnt=5&units=metric&appid={API_KEY}'
+    # Fetch 4-day forecast data
+    forecast_url = f'https://api.openweathermap.org/data/2.5/forecast?lat={weather_data["lat"]}&lon={weather_data["lon"]}&cnt=16&units=metric&appid={API_KEY}'
     forecast_response = requests.get(forecast_url)
     
     if forecast_response.status_code == 200:
         forecast_data = forecast_response.json()
         weather_data['forecast'] = []
         
-        for day in forecast_data['list']:
+        for i in range(0, 16, 4):
+            day_forecast = forecast_data['list'][i:i+4]
             weather_data['forecast'].append({
-                'date': day['dt'],
-                'temp_max': int(day['temp']['max']),
-                'temp_min': int(day['temp']['min']),
-                'description': day['weather'][0]['description'],
-                'icon': day['weather'][0]['icon']
+                'date': day_forecast[0]['dt'],
+                'temp_max': int(day_forecast[0]['main']['temp_max']),
+                'temp_min': int(day_forecast[0]['main']['temp_min']),
+                'description': day_forecast[0]['weather'][0]['description'],
+                'icon': day_forecast[0]['weather'][0]['icon']
             })
     
     return jsonify(weather_data)

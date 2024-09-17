@@ -1,81 +1,93 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background-color: #e0f7fa; /* Light blue background */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
 }
 
 .container {
-  background-color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+  margin: 50px auto;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
   text-align: center;
+  margin-bottom: 20px;
 }
 
 .search-box {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
-.search-box input {
+input[type=text], select {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
   width: calc(50% - 10px);
-  padding: 10px;
 }
 
-.search-box button {
-  padding: 10px;
+button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-/* Weather Box Styles */
+button:hover {
+  background-color: #0056b3;
+}
+
 .weather-box {
-  margin-top: 20px;
-}
-
-.not-found {
-  color: red;
-}
-
-/* Forecast Styles */
-.forecast {
-  margin-top: 20px;
-}
-
-.forecast h2 {
   text-align: center;
+  margin-top: 20px;
+}
+
+.weather-box img {
+  width: 100px; /* Adjust icon size */
+}
+
+.forecast {
+  margin-top: 30px;
+}
+
+.forecast-container {
+  position: relative; /* Positioning for carousel */
+}
+
+.carousel {
+  overflow-x: hidden; /* Hide overflow */
 }
 
 .forecast-boxes {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 10px; /* Space between forecast boxes */
+  display: flex; /* Flexbox for forecast boxes */
+  transition: transform 0.5s ease-in-out; /* Smooth transition */
 }
 
 .forecast-box {
-  background-color: rgba(255,255,255,0.8);
-  padding: 10px;
-  border-radius: 10px;
+  background-color: #e7f3fe; /* Light blue background */
+  border-radius: 5px;
+  padding: 15px;
+  margin-right: 10px; /* Space between boxes */
+}
+
+.not-found {
   text-align: center;
 }
 
-/* Animation */
-.fadeIn {
-  animation: fadeIn ease-in-out 0.5s forwards;
-}
-
-@keyframes fadeIn {
-  from {
-      opacity: 0;
-      transform: translateY(-10px);
-  }
-  
-  to {
-      opacity: 1;
-      transform: translateY(0);
-  }
+/* Carousel specific styles */
+.carousel-button {
+  position:absolute; 
 }
